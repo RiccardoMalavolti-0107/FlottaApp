@@ -26,13 +26,13 @@ namespace FlottaApp
             alapAr = AlapAr;
             osszesJarmuSzama++;
         }
-        public virtual int AdoKalkulacio()
+        public virtual int Adokalkulacio()
         {
             return alapAr % 20;
         }
         public override string ToString()
         {
-            return $"Jármű {Rendszam} | Alapár: {alapAr} Ft | Adó: {AdoKalkulacio()} Ft";
+            return $"Jármű {Rendszam} | Alapár: {alapAr} Ft | Adó: {Adokalkulacio()} Ft";
         }
     }
 }

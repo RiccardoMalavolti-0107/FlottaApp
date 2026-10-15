@@ -12,5 +12,13 @@ namespace FlottaApp
         {
             teherbiras = TeherBiras;
         }
+        public override int Adokalkulacio()
+        {
+            return Convert.ToInt16( alapAr % 20 + (TeherBiras * 10000));
+        }
+        public override string ToString()
+        {
+            return $"Jármű {Rendszam} | Alapár: {AlapAr} Ft | Adó: {Adokalkulacio()} Ft";
+        }
     }
 }
