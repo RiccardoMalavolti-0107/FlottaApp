@@ -21,16 +21,35 @@ foreach (string sor in File.ReadLines("jarmuvek.csv").Skip(1))
         HibasSorokSzama++;
         continue;
     }
-    int alapar = Convert.ToInt16( adatok[2].Trim());
+    int alapar = Convert.ToInt32(adatok[2]);
     if (string.IsNullOrWhiteSpace(tipus) || string.IsNullOrWhiteSpace(rendszam) || string.IsNullOrWhiteSpace(Convert.ToString( alapar)))
     {
         HibasSorokSzama++;
         continue;
     }
-    if (tipus == "J" || tipus == "T")
+    if (tipus != "J" || tipus != "T")
     {
         HibasSorokSzama++;
         continue;
     }
-    Lista.Add(new Jarmu(rendszam,alapar));
+    if(tipus == "T")
+    {
+       teherauto teherauto = new teherauto(Convert.ToDouble(adatok[3]),rendszam, alapar);
+       Lista.Add(teherauto);
+    }
+    if (tipus == "J")
+    {
+        Jarmu jarmu = new Jarmu(rendszam, alapar);
+        Lista.Add(jarmu);
+    }
 }
+
+Console.WriteLine("sikeresen beolvasott Jarmuvek szama: " + Lista.Count);
+foreach (var i in Lista)
+{
+    i.ToString();
+}
+//Console.WriteLine("a floatta osszesitett adoja:" + Lista.Sum(j => j.Adokalkulacio())); ?
+
+Console.WriteLine("jarmuvek szama: " + Jarmu.OsszesJarmuSzama);
+
